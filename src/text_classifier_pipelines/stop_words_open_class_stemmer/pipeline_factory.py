@@ -66,16 +66,14 @@ def get_generic_hyperparams_grid(is_logistic_else_bayes):
         'count_vect_that_remove_unfrequent_words_and_stopwords__max_df': [0.98],
         'count_vect_that_remove_unfrequent_words_and_stopwords__min_df': [1],
         'count_vect_that_remove_unfrequent_words_and_stopwords__max_features': [50000],
-        # 'count_vect_that_remove_unfrequent_words_and_stopwords__ngram_range': [(1, 1), (1, 2), (1, 3)],  # TODO:...
-        'count_vect_that_remove_unfrequent_words_and_stopwords__ngram_range': [(1, 1)],
+        'count_vect_that_remove_unfrequent_words_and_stopwords__ngram_range': [(1, 2), (1, 3)],
         'count_vect_that_remove_unfrequent_words_and_stopwords__strip_accents': [None],
         'count_vect_that_remove_unfrequent_words_and_stopwords__tokenizer': [identity],
         'count_vect_that_remove_unfrequent_words_and_stopwords__preprocessor': [None],
         'count_vect_that_remove_unfrequent_words_and_stopwords__lowercase': [False],
     }
     if is_logistic_else_bayes:
-        # 'logistic_regression__C': [1e-2, 1.0, 1e2, 1e4] # TODO:..
-        d['logistic_regression__C'] = [1e4]
+        d['logistic_regression__C'] = [1e4]  # TODO: [1e-2, 1.0, 1e2, 1e4]
     else:
         d['naive_bayes_multi__alpha'] = [0.1]  # TODO: [0.01, 0.1, 1.0]
     return d

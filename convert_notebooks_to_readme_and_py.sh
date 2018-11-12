@@ -12,8 +12,6 @@ jupyter nbconvert --to markdown Task2.ipynb
 cat Task1.md > README.md
 cat Task2.md >> README.md
 
-rm Task1.py
-rm Task2.py
 rm Task1.md
 rm Task2.md
 
