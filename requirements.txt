@@ -3,5 +3,8 @@ conv
 numpy
 scikit-learn
 nltk
+# nltk.download('stopwords')
+# nltk.download('tagsets')
+# nltk.download('sentiwordnet')
 matplotlib
 xgboost
