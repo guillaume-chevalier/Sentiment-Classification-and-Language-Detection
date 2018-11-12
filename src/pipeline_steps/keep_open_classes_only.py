@@ -83,20 +83,18 @@ class KeepOpenClassesOnly(BaseEstimator, TransformerMixin):
         return self
 
     def transform(self, x, y=None):
-        self.all_tags = set()
-        # TODO: do.
-        return x
+        # self.all_tags = set()
+        return self._tag_all_filter(x)
 
     def _tag_all_filter(self, X):
-        filtered = [self._tag_filter(x) for x in X[:10]]
+        filtered = [self._tag_filter(x) for x in X]
         return filtered
 
     def _tag_filter(self, x):
-        tagged = nltk.pos_tag(word_tokenize(x))
+        tagged = nltk.pos_tag(x)
 
-        for (word, tag) in tagged:
-            # TODO: delete this?
-            self.all_tags.add(tag)
+        # for (word, tag) in tagged:
+        #     self.all_tags.add(tag)
 
         WORDS_TO_KEEP = KeepOpenClassesOnly.WORDS_OPEN_CLASSES + KeepOpenClassesOnly.OTHER_NOT_WORDS
 
@@ -112,3 +110,7 @@ class KeepOpenClassesOnly(BaseEstimator, TransformerMixin):
         print("WORDS_CLOSED_CLASSES_OR_OTHER_MISC: ", KeepOpenClassesOnly.WORDS_CLOSED_CLASSES_OR_OTHER_MISC)
         print("OTHER_NOT_WORDS: ", KeepOpenClassesOnly.OTHER_NOT_WORDS)
         print("WORDS_TO_KEEP = WORDS_OPEN_CLASSES + OTHER_NOT_WORDS")
+
+if __name__ == "__main__":
+    #    word_tokenize(["this", "is"])
+    pass

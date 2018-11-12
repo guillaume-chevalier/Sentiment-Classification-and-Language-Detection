@@ -1,7 +1,9 @@
 import sklearn.utils
 
+from src.utils import identity
 
-def load_train(corpus_train, sentence_tokenizer=lambda x: x):
+
+def load_train(corpus_train, sentence_tokenizer=identity):
     labels_filenames, labels_paths = list(zip(*sorted([(r.split("/")[-1], r) for r in corpus_train])))
 
     data = []

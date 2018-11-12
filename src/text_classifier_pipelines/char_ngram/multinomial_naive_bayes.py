@@ -2,6 +2,7 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
 
+from src.utils import identity
 from src.evaluation.cross_validation import get_best_classifier_from_cross_validation
 from src.pipeline_steps.to_lower_case import ToLowerCase
 from src.pipeline_steps.to_n_gram import ToNGram
@@ -39,11 +40,11 @@ def get_multinomial_naive_bayes_hyperparams_grid(ngram):
         'to_ngram__ngram': [ngram],
         'to_ngram__stride': [1],
         'count_vectorizer__max_df': [0.98],
-        'count_vectorizer__min_df': [2],
+        'count_vectorizer__min_df': [1],
         'count_vectorizer__max_features': [100000],
         'count_vectorizer__ngram_range': [(1, 1)],
         'count_vectorizer__strip_accents': [None],
-        'count_vectorizer__tokenizer': [lambda x: x],
+        'count_vectorizer__tokenizer': [identity],
         'count_vectorizer__preprocessor': [None],
         'count_vectorizer__lowercase': [False],
         'tf_idf__norm': [None, 'l1', 'l2'],

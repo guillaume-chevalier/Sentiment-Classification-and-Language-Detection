@@ -10,7 +10,9 @@ def cross_validate(new_pipeline_funct, hyperparams_grid, X_train, y_train, name,
     pipeline = new_pipeline_funct()
 
     grid_search = GridSearchCV(
-        pipeline, hyperparams_grid, iid=True, cv=n_folds, return_train_score=False, verbose=False, scoring="accuracy")
+        pipeline, hyperparams_grid, iid=True, cv=n_folds, return_train_score=False, verbose=False, scoring="accuracy",
+        n_jobs=4, pre_dispatch=8
+    )
     grid_search.fit(X_train, y_train)
 
     if verbose:
