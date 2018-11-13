@@ -1,7 +1,6 @@
 rm Task1.py
 rm Task2.py
-rm Task1.md
-rm Task2.md
+rm -rf Task2_files/;
 rm README.md
 
 jupyter nbconvert --to python Task1.ipynb

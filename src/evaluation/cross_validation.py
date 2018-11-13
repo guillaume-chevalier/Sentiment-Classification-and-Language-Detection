@@ -1,7 +1,7 @@
 from sklearn.model_selection import GridSearchCV
 
 
-def cross_validate(new_pipeline_funct, hyperparams_grid, X_train, y_train, name, n_folds=3, verbose=True):
+def cross_validate(new_pipeline_funct, hyperparams_grid, X_train, y_train, name, n_folds=4, verbose=True):
     """
     Return the best hyperparameters.
     """

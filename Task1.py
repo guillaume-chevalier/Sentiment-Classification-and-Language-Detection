@@ -78,10 +78,10 @@ print(len(X_train), len(y_train), len(X_test), len(y_test))
 best_trained_pipelines = find_and_train_best_pipelines(X_train, y_train)
 
 
-# In[6]:
+# In[7]:
 
 
-print("The final test: classifying on test documents of full-length:")
+print("The final test: classifying on test documents:")
 print("")
 print("Note: the test set was of 20% of full data, which was held-out of cross validation.")
 print("")

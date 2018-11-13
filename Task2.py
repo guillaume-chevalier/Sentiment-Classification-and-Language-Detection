@@ -100,8 +100,15 @@ print("")
 
 print("The final test: classifying on test documents of full-length:")
 print("")
+max_score = 0
+max_score_model = ""
 for (model_name, model) in best_trained_pipelines.items():
-    score = model.score(X_test, y_test)
-    print("Score for '{}': {}%".format(model_name, score*100))
+    score = model.score(X_test, y_test) * 100
+    if score > max_score: 
+        max_score = score
+        max_score_model = model_name
+    print("Test set score for '{}': {}%".format(model_name, score))
+print("")
+print("Max score is by '{}': {}%".format(max_score_model, max_score))
 print("")
 

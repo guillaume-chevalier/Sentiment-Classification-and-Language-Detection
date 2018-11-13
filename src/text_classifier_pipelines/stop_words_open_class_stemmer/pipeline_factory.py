@@ -16,23 +16,7 @@ from src.pipeline_steps.to_lower_case import ToLowerCase
 def find_and_train_best_pipelines(X_train, y_train):
     print("Will start Cross Validation for Logistic Classifiers.")
     print("")
-    """
-    best_trained_pipelines = {
-        "1-gram Char Logistic Classifier": get_best_classifier_from_cross_validation(
-            get_generic_hyperparams_grid(True),
-            NewLogisticPipelineFunctor(
-                tolower=True,
-                attributes="keep_open_classes_only",
-                with_pos_neg_attribute=True,
-                with_stemming=True,
-                logistic_else_bayes=True
-            ),
-            X_train, y_train,
-            name="NAMEE TODO", verbose=True
-        )
-    }
-    return best_trained_pipelines  # TODO: delete above and use the method below.
-    """
+
     best_trained_pipelines = dict()
 
     for logistic_else_bayes_name, is_logistic_else_bayes in zip(
@@ -64,8 +48,8 @@ def find_and_train_best_pipelines(X_train, y_train):
 def get_generic_hyperparams_grid(is_logistic_else_bayes):
     d = {
         'count_vect_that_remove_unfrequent_words_and_stopwords__max_df': [0.98],
-        'count_vect_that_remove_unfrequent_words_and_stopwords__min_df': [1],
-        'count_vect_that_remove_unfrequent_words_and_stopwords__max_features': [50000],
+        'count_vect_that_remove_unfrequent_words_and_stopwords__min_df': [1, 2],
+        'count_vect_that_remove_unfrequent_words_and_stopwords__max_features': [500000],
         'count_vect_that_remove_unfrequent_words_and_stopwords__ngram_range': [(1, 2), (1, 3)],
         'count_vect_that_remove_unfrequent_words_and_stopwords__strip_accents': [None],
         'count_vect_that_remove_unfrequent_words_and_stopwords__tokenizer': [identity],
@@ -73,9 +57,9 @@ def get_generic_hyperparams_grid(is_logistic_else_bayes):
         'count_vect_that_remove_unfrequent_words_and_stopwords__lowercase': [False],
     }
     if is_logistic_else_bayes:
-        d['logistic_regression__C'] = [1e4]  # TODO: [1e-2, 1.0, 1e2, 1e4]
+        d['logistic_regression__C'] = [1e-2, 1.0, 1e2, 1e4]
     else:
-        d['naive_bayes_multi__alpha'] = [0.1]  # TODO: [0.01, 0.1, 1.0]
+        d['naive_bayes_multi__alpha'] = [0.01, 0.1, 1.0]
     return d
 
 
